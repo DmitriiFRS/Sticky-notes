@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="all.css">
+   <title>Заметки</title>
+</head>
+<body>
+   <div class="sticky-notes">
+      <div class="wrapper">
+         <section class="modal">
+            <div class="modal__body">
+               <textarea placeholder="Какая-то заметка" value="" class="modal__input" name="textarea" maxlength="70"></textarea>
+               <button class="modal__accept">Добавить</button>
+            </div>
+         </section>
+         <div class="notes__menu">
+            <div class="notes__remove-container notes-btns">
+               <button class="notes__remove">Удалить</button>
+            </div>
+            <div class="notes__add-container notes-btns">
+               <button class="notes__add">Добавить</button>
+            </div>
+         </div>
+         <section class="notes__container"></section>
+      </div>
+   </div>
+   <script src="script.js"></script>
+</body>
+</html>
