@@ -15,6 +15,10 @@
    flex-wrap: wrap;
    flex: 0 1 25%;
 }
+.notes__title {
+   font-size: 40px;
+   color: #d2c7f0;
+}
 .notes-item {
    width: 250px;
    height: 250px;
@@ -78,8 +82,8 @@
    align-items: center;
    justify-content: center;
    inset: 0;
-   min-height: 100%;
-   min-width: 100%;
+   min-height: 100vh;
+   min-width: 100vw;
    z-index: 2000;
 }
 .modal__body {
