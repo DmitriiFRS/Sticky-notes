@@ -9,6 +9,8 @@ function notes() {
       fiolet: '#9728b9',
       orange: '#c7bb0e',
    }
+   let saveObj = JSON.parse(localStorage.getItem('notes')) || {};
+   let saveCount = localStorage.getItem('count') || 0;
    const colorsArr = Object.values(colors);
    const add = document.querySelector(".modal__accept");
    const modalWindow = document.querySelector(".modal");
@@ -17,6 +19,21 @@ function notes() {
    const input = document.querySelector(".modal__input");
    const notesSection = document.querySelector(".notes__container");
    let deleteCount = 0;
+   if (Object.keys(saveObj).length !== 0) {
+      for (let key in saveObj) {
+         const newElem = document.createElement('div');
+         const textElem = document.createElement('p');
+         newElem.className = 'notes-item';
+         textElem.className = 'notes-text';
+         input.value = saveObj[key];
+         notesSection.appendChild(newElem);
+         newElem.appendChild(textElem);
+         textElem.textContent = input.value;
+         input.value = '';
+         newElem.style.backgroundColor = colorsArr[Math.floor(Math.random() * colorsArr.length)];
+         newElem.style.transform = `rotate(${Math.floor(Math.random() * 11) - 5}deg)`;
+      }
+   }
    function deleteNote() {
       if (deleteCount > 0) {
          deleteCount--;
@@ -43,7 +60,11 @@ function notes() {
       const textElem = document.createElement('p');
       newElem.className = 'notes-item';
       textElem.className = 'notes-text';
-      const notesBody = document.querySelector('.notes-item');
+      saveCount++;
+      saveObj[saveCount] = input.value;
+      console.log(saveObj);
+      localStorage.setItem('count', saveCount);
+      localStorage.setItem('notes', JSON.stringify(saveObj));
       if (input.value == '') {
          return;
       }
@@ -65,6 +86,24 @@ function notes() {
    function removeNote(e) {
       if (deleteCount == 1) {
          if (e.target.closest('.notes-item')) {
+            console.log(e.target.closest('.notes-item').children[0].innerHTML)
+            for (let key in saveObj) {
+               if (saveObj[key] === e.target.closest('.notes-item').children[0].innerHTML) {
+                  delete saveObj[key];
+                  saveCount--;
+                  break;
+               }
+            }
+            let count = 0;
+            let newObj = {};
+            for (let key in saveObj) {
+               count++;
+               newObj[count] = saveObj[key];
+            }
+            console.log(newObj)
+            localStorage.clear();
+            localStorage.setItem('count', saveCount);
+            localStorage.setItem('notes', JSON.stringify(newObj));
             e.target.closest('.notes-item').remove();
          }
       }

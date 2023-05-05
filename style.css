@@ -116,3 +116,18 @@
       flex: 0 1 100%;
    }
 }
+@media (max-width: 454px) {
+   .notes__title {
+      font-size: 20px;
+   }
+}
+@media (max-width: 350px) {
+   .notes__remove {
+      padding: 8px;
+      font-size: 17px;
+   }
+   .notes__add {
+      padding: 8px;
+      font-size: 17px;
+   }
+}
