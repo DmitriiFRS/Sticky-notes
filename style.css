@@ -84,7 +84,9 @@
    inset: 0;
    min-height: 100%;
    min-width: 100%;
+   padding: 0;
    z-index: 2000;
+   margin: 0 0 -20px -10px;
 }
 .modal__body {
    width: 250px;
